@@ -18,10 +18,13 @@ def install_dependencies():
 def build_project():
     try:
         print("Building the Python project...")
-        # Add your build steps here
 
-        # Create a 'build' directory if not exists
-        os.makedirs("build", exist_ok=True)
+        # Check if 'build' directory already exists
+        if os.path.exists("build"):
+            print("'build' directory already exists. Skipping creation.")
+        else:
+            # Create the 'build' directory if not exists
+            os.makedirs("build")
 
         # Copy or move the build artifacts to the 'build' directory
         shutil.copytree(".", "build/")  # Assuming build artifacts are in the same directory
