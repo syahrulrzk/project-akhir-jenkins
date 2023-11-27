@@ -31,7 +31,12 @@ def build_project():
         # Copy or move the build artifacts to the 'build' directory
         for item in os.listdir("."):
             if item != "build":  # Exclude the 'build' directory
-                shutil.copy(item, os.path.join("build", item))
+                src_path = item
+                dest_path = os.path.join("build", item)
+                if os.path.isdir(item):
+                    shutil.copytree(src_path, dest_path)
+                else:
+                    shutil.copy(src_path, dest_path)
 
         print("Build completed successfully!")
     except subprocess.CalledProcessError as e:
