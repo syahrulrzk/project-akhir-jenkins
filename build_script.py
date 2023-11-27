@@ -3,6 +3,7 @@
 import subprocess
 import sys
 import os
+import shutil
 
 def install_dependencies():
     try:
@@ -22,7 +23,7 @@ def build_project():
         os.makedirs("build", exist_ok=True)
         # Copy or move the build artifacts to the 'build' directory
         # You need to adjust this based on your actual build process
-        subprocess.run(["cp", "-r", "path/to/build/artifacts/*", "build/"], check=True)
+        shutil.copytree("path/to/build/artifacts", "build/")
         print("Build completed successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
