@@ -1,5 +1,8 @@
+# build_script.py
+
 import subprocess
 import sys
+import os
 
 def install_dependencies():
     try:
@@ -11,11 +14,23 @@ def install_dependencies():
         print(f"Error: {e}")
         sys.exit(1)
 
+def build_project():
+    try:
+        print("Building the Python project...")
+        # Add your build steps here
+        # For example, create a 'build' directory if not exists
+        os.makedirs("build", exist_ok=True)
+        # Copy or move the build artifacts to the 'build' directory
+        # You need to adjust this based on your actual build process
+        subprocess.run(["cp", "-r", "path/to/build/artifacts/*", "build/"], check=True)
+        print("Build completed successfully!")
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
 def main():
-    print("Building the Python project...")
     install_dependencies()
-    # Add additional build steps as needed
-    print("Build completed successfully!")
+    build_project()
 
 if __name__ == "__main__":
     main()
