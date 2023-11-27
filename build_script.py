@@ -19,11 +19,12 @@ def build_project():
     try:
         print("Building the Python project...")
         # Add your build steps here
-        # For example, create a 'build' directory if not exists
+
+        # Create a 'build' directory if not exists
         os.makedirs("build", exist_ok=True)
+
         # Copy or move the build artifacts to the 'build' directory
-        # You need to adjust this based on your actual build process
-        shutil.copytree("path/to/build/artifacts", "build/")
+        shutil.copytree(".", "build/")  # Assuming build artifacts are in the same directory
         print("Build completed successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
