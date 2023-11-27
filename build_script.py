@@ -20,14 +20,19 @@ def build_project():
         print("Building the Python project...")
 
         # Check if 'build' directory already exists
-        if os.path.exists("build"):
-            print("'build' directory already exists. Skipping creation.")
+        if not os.path.exists("build"):
+            os.makedirs("build")
         else:
-            # Create the 'build' directory if not exists
+            print("'build' directory already exists. Removing its contents.")
+            # Clear the contents of the 'build' directory if it already exists
+            shutil.rmtree("build")
             os.makedirs("build")
 
         # Copy or move the build artifacts to the 'build' directory
-        shutil.copytree(".", "build/")  # Assuming build artifacts are in the same directory
+        for item in os.listdir("."):
+            if item != "build":  # Exclude the 'build' directory
+                shutil.copy(item, os.path.join("build", item))
+
         print("Build completed successfully!")
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
