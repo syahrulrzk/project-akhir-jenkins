@@ -1,2 +1,2 @@
-# project-akhir-jenkins
-Proyek Membangun CI/CD Pipeline dengan Jenkins
+# a428-cicd-labs
+Repository untuk Kelas Belajar Implementasi CI/CD
